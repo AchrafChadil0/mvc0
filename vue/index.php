@@ -22,15 +22,23 @@ class Vue {
     }
 
     public function renderVueErreur($ErrCode){
-        $ErrMsg = "";
+        /*$ErrMsg = "";
         if ($ErrCode == 1) {
-            $ErrMsg  = "Parametre Id Absent";
-            
+            $_GET['errCode']  = "Parametre Id Absent";
         }
         else if ($ErrCode == 2){
             $ErrMsg  = "identifiant de billet non valide";
         }
-        $_GET['errMsg'] = $ErrMsg;
+        else if ($ErrCode == 3){
+            $ErrMsg = "ce billet existe déjà";
+        }
+
+
+        else if ($ErrCode == 4){
+            $ErrMsg = "ce billet n'existe déjà";
+        }*/
+
+        $_GET['errCode'] = $ErrCode;
         require_once('gabarit.php');
         require_once('vueErreur.php');
         
@@ -53,7 +61,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     if (isset($_GET['renderVueAccueil'])) {
         
-        return $Vue->renderVueAccueil(); ;
+        $Vue->renderVueAccueil();
+        exit;
         
     }
 
@@ -68,11 +77,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $idErr = intval(@$_GET['id']);
 
         if (  isset($_GET['id']) == false  )  {
-            return $Vue->renderVueErreur(1);
+            $Vue->renderVueErreur(1);
+            exit;
         }
 
         else if ($idErr == 0){
-            return $Vue->renderVueErreur(2);
+            $Vue->renderVueErreur(2);
+            exit;
         }
 
         // end err
@@ -81,7 +92,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
 
         else{
-            return $Vue->renderVueBillet();
+            $Vue->renderVueBillet();
+            exit;
         }
 
         
@@ -91,16 +103,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     
 }
 require_once('/wamp64/www/mvc0/commentaire.php');
-$cmtrObj = new Commentaire();
+require_once('/wamp64/www/mvc0/billet.php');
+//$cmtrObj = new Commentaire();
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['ajouterCommentaire'])) {
 
         $id = $_GET['id'];
+        $billetCnt = $bilObj->isIdBillet($id)['cnt'];
+        if ($billetCnt == 0){
+            $Vue->renderVueErreur(4);
+            exit;
+        }
         $cmtrObj->ajouterCommentaire($_POST['auteur'],$_POST['contenu'], $id);
         header("Location: index.php?renderVueBillet&id=$id");
         
 
-}
+    }
+
+    if (isset($_POST['ajouterBillet'])) {
+
+        $id = $_POST['id'];
+        $billetCnt = $bilObj->isIdBillet($id)['cnt'];
+        if (intval($id) == 0){
+            $Vue->renderVueErreur(2);
+        }
+        else if ($billetCnt == 1){
+            $Vue->renderVueErreur(3);
+            exit;
+        }
+
+        $bilObj->ajouterBillet($id);
+        header("Location: index.php");
+
+
+    }
+
 }
 
 require_once('vueAccueil.php');

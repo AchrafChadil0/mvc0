@@ -33,10 +33,12 @@ class Commentaire extends model {
             $params = [
                 0 => $auteur,
                 1 => $contenu,
-                2 => $idBillet
+                2 => $idBillet,
+
+
             ];
-            
-            
+
+
             return $stm-> execute($params);
 
 
@@ -46,6 +48,11 @@ class Commentaire extends model {
     }
 
 }
+
+
+$cmtrObj = new Commentaire();
+
+
 
 
 

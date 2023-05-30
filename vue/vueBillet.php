@@ -1,14 +1,7 @@
 <?php
 require_once('/wamp64/www/mvc0/commentaire.php');
-$cmtrObj = new Commentaire();
-
 $id = $_GET['id'];
-
 $commentaire_s_ParId = $cmtrObj->getCommentaires($id);
-
-
-
-
 ?>
 
 
@@ -40,9 +33,10 @@ $commentaire_s_ParId = $cmtrObj->getCommentaires($id);
     <?php } else { ?>
         
         <p>il n'y a pas de commentaire associé à cet identifiant</p>
-        <?php } ?>
-</table>
 
+
+        <?php }  ?>
+</table>
 <form method="POST">
     <h4>Ajouter un commentaire </h4>
     <label for="auteur">Auteur : </label>

@@ -42,6 +42,6 @@
             }
 
     </style>
-    <h1>GABARIT</h1>
+    <h1>Mon blog</h1>
 </body>
 </html>

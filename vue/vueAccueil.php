@@ -34,3 +34,12 @@ $billlets = $billetObj->getBillets();
     </tbody>
 
 </table>
+
+<form method="POST">
+    <h4>Ajouter un billet</h4>
+    <label>Id Billet : </label>
+    <input type="text" name="id" > <br> <br>
+
+    <input type="submit" value="ajouter Billet" name="ajouterBillet">
+
+</form>
