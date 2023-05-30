@@ -1,19 +1,14 @@
 <?php
-$ErrMsg="";
-if ($_GET['errCode'] == 1) {
-    $ErrMsg  = "Parametre Id Absent";
-}
-else if ($_GET['errCode'] == 2){
-    $ErrMsg  = "identifiant de billet non valide";
-}
-else if ($_GET['errCode'] == 3){
-    $ErrMsg = "ce billet existe déjà";
-}
+$ErrmsgS =
+        [
+            1 => "Parametre Id Absent",
+            2 => "identifiant de billet non valide",
+            3 => "ce billet existe déjà",
+            4 => "ce billet n'existe pas!"
+        ];
 
-else if ($_GET['errCode'] == 4){
-    $ErrMsg = "ce billet n'existe pas!";
-}
-
+$ErrCode = $_GET['errCode'];
+$ErrMsg = $ErrmsgS[$ErrCode];
 
 ?>
 

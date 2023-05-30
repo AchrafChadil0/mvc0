@@ -2,7 +2,7 @@
 abstract class model {
 
 
-    public function connectDb(){
+    public function connectDb () {
         $db = new PDO('mysql:host=localhost;dbname=mvc1', 'root', '');
         return $db;
     }

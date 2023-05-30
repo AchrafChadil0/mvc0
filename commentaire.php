@@ -22,7 +22,7 @@ class Commentaire extends model {
         }
     }
 
-    public function ajouterCommentaire($auteur, $contenu, $idBillet){
+    public function ajouterCommentaire ($auteur, $contenu, $idBillet){
         try {
 
             $db = $this->connectDb();
@@ -51,14 +51,5 @@ class Commentaire extends model {
 
 
 $cmtrObj = new Commentaire();
-
-
-
-
-
-
-
-
-
 
 ?>

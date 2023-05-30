@@ -30,7 +30,7 @@ $commentaire_s_ParId = $cmtrObj->getCommentaires($id);
     <?php endforeach?>
     <tr>
     </tbody>
-    <?php } else { ?>
+    <?php  } else { ?>
         
         <p>il n'y a pas de commentaire associé à cet identifiant</p>
 
