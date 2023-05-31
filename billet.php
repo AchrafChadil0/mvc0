@@ -80,6 +80,24 @@ class Billet extends model
     }
 
 
+    function supprimerBillet($idBillet){
+        try {
+
+            $db = $this->connectDb();
+            $sql = 'DELETE FROM t_billet where idBillet = ?';
+            $stm = $db->prepare($sql);
+            $stm->bindParam(1, $idBillet, PDO::PARAM_INT);
+            return $stm->execute();
+
+        } catch (\PDOException $th) {
+
+            throw $th;
+
+        }
+
+    }
+
+
 
 
 

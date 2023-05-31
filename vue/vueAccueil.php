@@ -8,14 +8,14 @@ $billlets = $billetObj->getBillets();
 ?>
 
 
-<table>
+<table class="table table-bordered table-striped table-hover">
     <caption>Les Billets</caption>
-    <thead>
+    <thead class="table-dark">
             <tr>
                 <?php foreach($billlets[0] as $keyHeader => $valueHeader):?>
                 <th><?=$keyHeader?></th>
                 <?php endforeach?>
-                <th>Commentaires</th>
+                <th>Actions</th>
                 
             </tr>
     </thead>
@@ -25,7 +25,10 @@ $billlets = $billetObj->getBillets();
                 <tr>
                     <td><?=$billet['idBillet']?></td>
                     <td><?=$billet['create_time']?></td>
-                    <td><a href="index.php?renderVueBillet&id=<?=$billet['idBillet']?>">Voir Les commentaires</a></td>
+                    <td>
+                        <a class="btn btn-primary" href="index.php?renderVueBillet&id=<?=$billet['idBillet']?>">Voir Les commentaires</a>
+                        <a class="btn btn-danger" href="index.php?supprimerBillet&id=<?=$billet['idBillet']?>">Supprimer</a>
+                    </td>
                 </tr>
                 
             <?php endforeach?>
@@ -33,7 +36,7 @@ $billlets = $billetObj->getBillets();
                 
     </tbody>
 
-</table>
+</table >
 
 <form method="POST">
     <h4>Ajouter un billet</h4>

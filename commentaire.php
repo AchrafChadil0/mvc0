@@ -37,14 +37,36 @@ class Commentaire extends model {
 
 
             ];
-
-
             return $stm-> execute($params);
-
 
         } catch (\PDOException $th) {
             throw $th;
         }
+    }
+
+    public function supprimmerCommentaire($id, $flag){
+
+        try {
+
+            $db = $this->connectDb();
+            if ( $flag == 2 ){
+                $sql = 'DELETE FROM comments where idBillet = ?';
+            }
+            elseif ( $flag == 3 ) {
+                $sql = 'DELETE FROM comments where idCommentaire = ?';
+            }
+
+            $stm = $db->prepare($sql);
+            $stm->bindParam(1, $id, PDO::PARAM_INT);
+
+            return $stm-> execute();
+
+        }
+
+        catch (\PDOException $th) {
+            throw $th;
+        }
+
     }
 
 }

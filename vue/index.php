@@ -7,13 +7,14 @@
 
 class Vue {
 
-    public function renderVueAccueil(){
+    public function renderVueAccueil() :void {
         require_once('gabarit.php');
         require_once('vueAccueil.php');
+
     }
 
 
-    public function renderVueBillet(){
+    public function renderVueBillet() :void {
         
         
         require_once('gabarit.php');
@@ -21,22 +22,7 @@ class Vue {
 
     }
 
-    public function renderVueErreur($ErrCode){
-        /*$ErrMsg = "";
-        if ($ErrCode == 1) {
-            $_GET['errCode']  = "Parametre Id Absent";
-        }
-        else if ($ErrCode == 2){
-            $ErrMsg  = "identifiant de billet non valide";
-        }
-        else if ($ErrCode == 3){
-            $ErrMsg = "ce billet existe déjà";
-        }
-
-
-        else if ($ErrCode == 4){
-            $ErrMsg = "ce billet n'existe déjà";
-        }*/
+    public function renderVueErreur($ErrCode): void{
 
         $_GET['errCode'] = $ErrCode;
         require_once('gabarit.php');
@@ -49,15 +35,12 @@ class Vue {
 }
 
 
-
+require_once('/wamp64/www/mvc0/billet.php');
 require_once('gabarit.php');
 $Vue = new Vue();
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-
-    
-
 
     if (isset($_GET['renderVueAccueil'])) {
         
@@ -66,17 +49,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         
     }
 
-
-
-
-    
-
     if (isset($_GET['renderVueBillet'])) {
         
         // err 
         $idErr = intval(@$_GET['id']);
 
-        if (  isset($_GET['id']) == false  )  {
+        if ( isset($_GET['id']) == false )  {
             $Vue->renderVueErreur(1);
             exit;
         }
@@ -89,21 +67,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         // end err
 
 
-
-
         else{
             $Vue->renderVueBillet();
             exit;
         }
 
-        
-        
     }
+
+
 
     
 }
+
 require_once('/wamp64/www/mvc0/commentaire.php');
-require_once('/wamp64/www/mvc0/billet.php');
+if ($_SERVER['REQUEST_METHOD'] === 'GET'){
+    if (isset($_GET['supprimerCommentaire'])){
+        $id = $_GET['id'];
+        $idCommentaire = $_GET['idCommentaire'];
+        $cmtrObj->supprimmerCommentaire($idCommentaire, 3);
+        header("Location: index.php?renderVueBillet&id=$id");
+    }
+
+    if (isset($_GET['supprimerCommentaires'])){
+        $id = $_GET['id'];
+        $cmtrObj->supprimmerCommentaire($id, 2);
+        header("Location: index.php?renderVueBillet&id=$id");
+    }
+
+}
+
 //$cmtrObj = new Commentaire();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -120,6 +112,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
 
     }
+
+
 
     if (isset($_POST['ajouterBillet'])) {
 
@@ -138,10 +132,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     }
-
 }
 
-require_once('vueAccueil.php');
+
+
+
+
+    require_once('vueAccueil.php');
 
 
 
