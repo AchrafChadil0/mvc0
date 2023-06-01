@@ -12,39 +12,6 @@
     <title>Document</title>
 </head>
 <body>
-<!--<style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            }
-        table caption {
-            border-collapse: collapse;
-            width: 100%;
-            font-size: 2em;
-        }
-
-            th, td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-            }
-
-            th {
-            background-color: #f2f2f2;
-            }
-
-            tr:nth-child(even) {
-            background-color: #f9f9f9;
-            }
-
-            tr:hover {
-            background-color: #eaf2f8;
-            }
-            h1{
-                text-align: center;
-            }
-
-    </style>-->
     <div class="container">
         <nav class="navbar navbar-expand-lg bg-body-tertiary ">
             <div class="container-fluid">
