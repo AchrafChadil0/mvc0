@@ -44,15 +44,16 @@ class Commentaire extends model {
         }
     }
 
-    public function supprimmerCommentaire($id, $flag){
+    public function supprimmerCommentaire($id, $mode): bool
+    {
 
         try {
 
             $db = $this->connectDb();
-            if ( $flag == 2 ){
+            if ( $mode == 2 ){
                 $sql = 'DELETE FROM comments where idBillet = ?';
             }
-            elseif ( $flag == 3 ) {
+            elseif ( $mode == 3 ) {
                 $sql = 'DELETE FROM comments where idCommentaire = ?';
             }
 

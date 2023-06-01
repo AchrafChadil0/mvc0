@@ -12,7 +12,7 @@ $requestedUri = $_SERVER['REQUEST_URI'];
     
     <?php if ((count($cmtrObj->getCommentaires($id)) != 0)){ ?>
     <caption>Les commentaires</caption>
-    <thead>
+    <thead class="table-dark">
         <tr>
         <?php foreach($commentaire_s_ParId[0] as $keyHeader => $valueHeader):?>
             <th><?=$keyHeader?></th>
@@ -60,17 +60,17 @@ $requestedUri = $_SERVER['REQUEST_URI'];
 
     <div class="form-group">
         <label for="auteur">auteur:</label>
-        <input type="text" name="auteur" class="form-control" id="auteur">
+        <input type="text" name="auteur" class="form-control" id="auteur" required>
     </div>
 
     <div class="form-group" >
         <label for="contenu">contenu:</label>
-        <input type="text" name="contenu" class="form-control" id="contenu">
+        <input type="text" name="contenu" class="form-control" id="contenu" required>
     </div>
     <br>
     <input type="submit" value="Ajouter commentaire" name="ajouterCommentaire" class="btn btn-primary">
-    </div>
+
 </form>
 
 
-<
+

@@ -94,6 +94,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET'){
         header("Location: index.php?renderVueBillet&id=$id");
     }
 
+    if (isset($_GET['supprimerBillet'])){
+        $id = $_GET['id'];
+        $bilObj->supprimerBillet($id);
+        $cmtrObj->supprimmerCommentaire($id, 2);
+        header("Location: index.php");
+    }
+
+
 }
 
 //$cmtrObj = new Commentaire();
@@ -138,7 +146,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 
-    require_once('vueAccueil.php');
+require_once('vueAccueil.php');
 
 
 
